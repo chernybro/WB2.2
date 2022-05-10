@@ -2,14 +2,16 @@ package com.chernybro.wb22
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.button.MaterialButton
 import timber.log.Timber
 
 
-class SecondFragment : Fragment() {
+class SecondFragment : DialogFragment() {
 
     companion object {
         fun newInstance()  = SecondFragment()
@@ -37,7 +39,12 @@ class SecondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Timber.d("${this.javaClass.canonicalName} onViewCreated")
+
+        view.findViewById<MaterialButton>(R.id.btn_open_dialog).setOnClickListener {
+            ((activity as MainView).showFragmentDialog("Hello, World!"))
+        }
     }
+
 
     override fun onStart() {
         super.onStart()
